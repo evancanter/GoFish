@@ -10,10 +10,10 @@ using namespace std;
 
 
 // PROTOTYPES for functions used by this demonstration program:
-void dealHand(Deck &d, Player &p, int numCards);
+//void dealHand(Deck &d, Player &p, int numCards);
 
 
-
+/*
 
 int main( )
 {
@@ -33,14 +33,23 @@ int main( )
     
     return EXIT_SUCCESS;  
 }
+*/
+int main() {
+    Card::Suit d=Card::Suit::diamonds;
 
+    Card c1;
+    Card c2(12,d);
+    cout<<"c1: "<<c1.toString()<<endl;
+    cout<<"c2: "<<c2.toString()<<endl;
+}
 
-
+/*
 void dealHand(Deck &d, Player &p, int numCards)
 {
    for (int i=0; i < numCards; i++)
       p.addCard(d.dealCard());
 }
+*/
    
 
 
