@@ -37,6 +37,7 @@ class Card
     Card();          // default, ace of spades
 
     Card(int rank, Suit s);
+    Card(Card const &c);
 
     string toString()              const;  // return string version e.g. Ac 4h Js
     bool sameSuitAs(const Card& c) const;  // true if suit same as c

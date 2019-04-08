@@ -35,12 +35,20 @@ int main( )
 }
 */
 int main() {
-    Card::Suit d=Card::Suit::diamonds;
+    Card::Suit d=Card::diamonds;
 
     Card c1;
     Card c2(12,d);
     cout<<"c1: "<<c1.toString()<<endl;
     cout<<"c2: "<<c2.toString()<<endl;
+    Deck deck;
+    Card c3;
+    cout<<"Size: "<<deck.size()<<endl;
+    for(int i =0;i<52;i++) {
+        c3=deck.dealCard();
+        cout<<deck.size()<<": "<<c3.toString()<<endl;
+    }
+
 }
 
 /*
