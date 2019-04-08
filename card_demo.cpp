@@ -48,7 +48,12 @@ int main() {
         c3=deck.dealCard();
         cout<<deck.size()<<": "<<c3.toString()<<endl;
     }
-
+    deck.shuffle();
+    cout<<"SHUFFLED"<<endl;
+    for(int i =0;i<52;i++) {
+        c3=deck.dealCard();
+        cout<<deck.size()<<": "<<c3.toString()<<endl;
+    }
 }
 
 /*
