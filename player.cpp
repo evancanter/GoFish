@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <ctime>
+#include <cstdlib>
 
 using namespace std;
 
@@ -63,16 +64,19 @@ Card Player::removeCardFromHand(Card c) {
 }
 bool Player::cardInHand(Card c) const {
     for(int i=0;i<myHand.size();i++) {
-        if(c.toString()==myHand[i].toString())
+        if(c==myHand[i])
             return true;
     }
     return false;
 }
 Card Player::chooseCardFromHand() const {
+    
     int picked=rand()%myHand.size();
     return myHand[picked];
+    
 }
 bool Player::checkHandForPair(Card &c1, Card &c2) {
+    if(!myHand.size()) { return false;}
     for(int i =0;i<myHand.size()-1;i++) {
         for(int j=i+1;j<myHand.size();j++) {
             if(myHand[i].getRank()==myHand[j].getRank()) {
