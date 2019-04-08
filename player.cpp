@@ -11,13 +11,13 @@ void Player::addCard(Card c) {
     myHand.push_back(c);
 }
 void Player::bookCards(Card c1,Card c2) {
-    for(vector<Card>::iterator i = myHand.begin();i!=myHand.end()-1;++i) {
-        for(vector<Card>::iterator j=i+1;j!=myHand.end();++j) {
+    for(vector<Card>::iterator i = myHand.begin();i!=myHand.end()-1;i++) {
+        for(vector<Card>::iterator j=i+1;j!=myHand.end();j++) {
             if(i->getRank()==j->getRank()) {    //pair, make add to book collection and recheck
                 myBook.push_back(*i);
                 myBook.push_back(*j);
                 myHand.erase(i);
-                myHand.erase(j);
+                myHand.erase(j-1);
                 Player::bookCards(c1,c2);
                 return;
             }
