@@ -11,7 +11,7 @@ void Player::addCard(Card c) {
     myHand.push_back(c);
 }
 void Player::bookCards(Card c1,Card c2) {
-    for(vector<Card>::iterator i = myHand.begin()-1;i!=myHand.end();++i) {
+    for(vector<Card>::iterator i = myHand.begin();i!=myHand.end()-1;++i) {
         for(vector<Card>::iterator j=i+1;j!=myHand.end();++j) {
             if(i->getRank()==j->getRank()) {    //pair, make add to book collection and recheck
                 myBook.push_back(*i);
@@ -53,3 +53,18 @@ int Player::getHandSize() const {
 int Player::getBookSize() const {
     return myBook.size()/2;
 } 
+Card Player::removeCardFromHand(Card c) {
+    for(vector<Card>::iterator i = myHand.begin();i!=myHand.end();++i) {
+        if(c.toString()==i->toString()) {
+            myHand.erase(i);
+            return c;
+        }
+    }
+}
+bool Player::cardInHand(Card c) const {
+    for(int i=0;i<myHand.size();i++) {
+        if(c.toString()==myHand[i].toString())
+            return true;
+    }
+    return false;
+}
