@@ -93,3 +93,10 @@ bool Card::sameSuitAs(Card const &c) const {
 int Card::getRank() const {
     return myRank;
 }
+
+bool Card::operator ==(Card const &c) const {
+    return myRank == c.getRank() && mySuit==c.mySuit;
+}
+bool Card::operator !=(Card const &c) const {
+    return !(myRank == c.getRank() && mySuit==c.mySuit);
+}

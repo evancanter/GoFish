@@ -3,7 +3,7 @@
 #include "player.h"
 #include <string>
 #include <iostream>
-
+#include <ctime>
 
 using namespace std;
 
@@ -11,16 +11,16 @@ void Player::addCard(Card c) {
     myHand.push_back(c);
 }
 void Player::bookCards(Card c1,Card c2) {
-    for(vector<Card>::iterator i = myHand.begin();i!=myHand.end()-1;i++) {
-        for(vector<Card>::iterator j=i+1;j!=myHand.end();j++) {
-            if(i->getRank()==j->getRank()) {    //pair, make add to book collection and recheck
-                myBook.push_back(*i);
-                myBook.push_back(*j);
-                myHand.erase(i);
-                myHand.erase(j-1);
-                Player::bookCards(c1,c2);
-                return;
-            }
+    myBook.push_back(c1);
+    myBook.push_back(c2);
+    for(vector<Card>::iterator i = myHand.begin();i!=myHand.end();++i) {
+        if(*i==c1) {
+            myHand.erase(i);
+            i--;
+        }
+        if(*i==c2) {
+            myHand.erase(i);
+            i--;
         }
     }
 }
@@ -55,7 +55,7 @@ int Player::getBookSize() const {
 } 
 Card Player::removeCardFromHand(Card c) {
     for(vector<Card>::iterator i = myHand.begin();i!=myHand.end();++i) {
-        if(c.toString()==i->toString()) {
+        if(c==*i) {
             myHand.erase(i);
             return c;
         }
@@ -65,6 +65,22 @@ bool Player::cardInHand(Card c) const {
     for(int i=0;i<myHand.size();i++) {
         if(c.toString()==myHand[i].toString())
             return true;
+    }
+    return false;
+}
+Card Player::chooseCardFromHand() const {
+    int picked=rand()%myHand.size();
+    return myHand[picked];
+}
+bool Player::checkHandForPair(Card &c1, Card &c2) {
+    for(int i =0;i<myHand.size()-1;i++) {
+        for(int j=i+1;j<myHand.size();j++) {
+            if(myHand[i].getRank()==myHand[j].getRank()) {
+                c1=myHand[i];
+                c2=myHand[j];
+                return true;
+            }
+        }
     }
     return false;
 }

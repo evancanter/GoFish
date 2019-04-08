@@ -32,8 +32,12 @@ int main( )
     cout << p2.getName() <<" has : " << p2.showHand() << endl;
     Card c1;
     Card c2;
-    p1.bookCards(c1,c2);
-    p2.bookCards(c1,c2);
+    while(p1.checkHandForPair(c1,c2)) {
+        p1.bookCards(c1,c2);
+    }
+    while(p2.checkHandForPair(c1,c2)) {
+        p2.bookCards(c1,c2);
+    }
     cout << p1.getName() <<" has : " << p1.showBooks() << " booked" << endl;
     cout << p2.getName() <<" has : " << p2.showBooks() << " booked" << endl;
     cout << p1.getName() <<" has : " << p1.showHand() << endl;

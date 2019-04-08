@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <ctime>
 
 
 #include "card.h"
@@ -22,7 +23,9 @@ class Player
     Player();
 
     Player(string name) {
-       myName = name;
+      time_t timer;
+      myName = name;
+      srand(time(&timer));
     }
 
     string getName() const {
