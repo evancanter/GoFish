@@ -70,7 +70,6 @@ bool Player::cardInHand(Card c) const {
     return false;
 }
 Card Player::chooseCardFromHand() const {
-    
     int picked=rand()%myHand.size();
     return myHand[picked];
     

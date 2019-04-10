@@ -11,6 +11,8 @@
 #include <string>
 #include <vector>
 #include <ctime>
+#include <cstdlib>
+
 
 
 #include "card.h"
@@ -20,7 +22,11 @@ using namespace std;
 class Player
 {
   public:
-    Player();
+    Player() {
+      time_t timer;
+      myName="";
+      srand(time(&timer));
+    }
 
     Player(string name) {
       time_t timer;
@@ -75,14 +81,13 @@ class Player
     //Does the player have a card with the same rank as c in her hand?
     //e.g. will return true if the player has a 7d and the parameter is 7c
     
-    bool sameRankInHand(Card c) const; 
+    //bool sameRankInHand(Card c) const; 
     
     
   private:
           
     vector <Card> myHand;
     vector <Card> myBook;
-    
     string myName;     
    
 };

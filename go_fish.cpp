@@ -11,7 +11,7 @@ using namespace std;
 void book(Player &p,int pn,ofstream &outFile) {
     Card c1,c2;
     while(p.checkHandForPair(c1,c2)) {
-        outFile<<"Player "<<pn<< " books a pair of "<<c1.toString()[0]<<"'s."<<endl;
+        outFile<<"Player "<<pn<< " books a pair of "<<c1.rankString(c1.getRank())<<"'s."<<endl;
         p.bookCards(c1,c2);
     }
 }
@@ -52,9 +52,10 @@ int main(int argc,char*argv[]) {
     while((p1.getBookSize()+p2.getBookSize())<26) {
         //player 1's turn
         turn=true;
+        outFile << "Player 1: " <<p1.showHand() <<endl << "Player 2: "<<p2.showHand()<<endl;
         while(turn&&p1.getHandSize()) {
             picked=p1.chooseCardFromHand();
-            outFile<<"Player 1: Got any "<<picked.toString()[0]<<"'s?"<<endl;
+            outFile<<"Player 1: Got any "<<picked.rankString(picked.getRank())<<"'s?"<<endl;
             turn=takeCards(p1,p2,picked);
             if(turn)
                 outFile<<"Player 2: Yes. "<<endl;
@@ -70,9 +71,10 @@ int main(int argc,char*argv[]) {
         //player 2's turn
         outFile<<endl;
         turn=true;
+        outFile << "Player 1: " <<p1.showHand() <<endl << "Player 2: "<<p2.showHand()<<endl;
         while(turn&&p2.getHandSize()) {
             picked=p2.chooseCardFromHand();
-            outFile<<"Player 2: Got any "<<picked.toString()[0]<<"'s?"<<endl;
+            outFile<<"Player 2: Got any "<<picked.rankString(picked.getRank())<<"'s?"<<endl;
             turn=takeCards(p2,p1,picked);
             if(turn)
                 outFile<<"Player 1: Yes. "<<endl;  
